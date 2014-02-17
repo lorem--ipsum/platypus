@@ -15,9 +15,12 @@ angular.module('npp', ['apojop', 'platypus'])
     $scope.error = result.error;
   };
 
+
+  $scope.loading = true;
   d3.json('assets/data.json', function(error, _data_) {
     data = _data_;
     update();
+    $scope.loading = false;
     $scope.$apply()
   });
 

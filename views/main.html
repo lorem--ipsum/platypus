@@ -1,4 +1,10 @@
-<div class="units-row">
+<div class="units-row" ng-show="loading">
+  <div class="unit-100 box">
+    Loading...
+  </div>
+</div>
+
+<div class="units-row" ng-hide="loading">
   <div class="unit-100 box">
     <input class="search" ng-model="expression"></input>
     <span class="error" ng-show="error">{{error}}</span>
