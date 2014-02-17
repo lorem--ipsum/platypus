@@ -15,7 +15,7 @@ angular.module('npp', ['apojop', 'platypus'])
     $scope.error = result.error;
   };
 
-  d3.json('../assets/data.json', function(error, _data_) {
+  d3.json('assets/data.json', function(error, _data_) {
     data = _data_;
     update();
     $scope.$apply()
