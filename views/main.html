@@ -1,0 +1,38 @@
+<div class="units-row">
+  <div class="unit-100 box">
+    <input class="search" ng-model="expression"></input>
+    <span class="error" ng-show="error">{{error}}</span>
+    <span ng-hide="error">{{users.length}} matching results</span>
+    <span ng-show="!error && users.length > 500">(showing only 500)</span>
+  </div>
+  <div class="unit-100 box results">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>IsActive</th>
+          <th>Age</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Gender</th>
+          <th>Company</th>
+          <th>Email</th>
+          <th>Registered</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users | limitTo: 500">
+          <td>{{user.id}}</td>
+          <td>{{user.isActive}}</td>
+          <td>{{user.age}}</td>
+          <td>{{user.firstname}}</td>
+          <td>{{user.lastname}}</td>
+          <td>{{user.gender}}</td>
+          <td>{{user.company}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.registered | date:'MMM d, y h:mm a'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
