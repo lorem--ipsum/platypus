@@ -1,0 +1,54 @@
+{
+  function flatten(left, op, right) {
+    var o = {};
+    o[op] = [left, right];
+    return o;
+  }
+}
+
+
+start
+  = condition
+  / nothing
+
+condition "condition"
+  = left:primary " " op:operator " " right:condition {return flatten(left, op, right);}
+  / primary
+
+operator "boolean operator"
+  = ("&&" / "and") {return "and";}
+  / ("||" / "or") {return "or";}
+
+primary "primary"
+  = field:field " " op:comparator " " val:multi {return {field: field, operator: op, value: val}}
+  / field:field " " op:rangecomparator " " val:range {return {field: field, operator: op, value: val}}
+  / field:field " " op:comparator " " val:value {return {field: field, operator: op, value: val}}
+  / "(" condition:condition ")" { return condition; }
+
+field "field"
+  = chars:[a-z]+ {return chars.join('');}
+
+rangecomparator "range comparator"
+  = op:"is between" {return op;}
+
+comparator "comparator"
+  = op:("=="/"!="/"is not"/"is between"/"is"/"contains") {return op;}
+
+multi "multiple values"
+  = v:value vs:(" or " value)+ {return [v].concat(vs.map(function(d) {return d[1];}));}
+
+range "range"
+  = a:value " and " b:value {return [a, b]}
+
+value "value"
+  = integer
+  / string
+
+integer "integer"
+  = digits:[0-9]+ { return parseInt(digits.join(''), 10); }
+
+string "string"
+  = '"' v:[a-z0-9]* '"' {return v.join('');}
+
+nothing
+  = "" {return undefined}
