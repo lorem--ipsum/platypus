@@ -24,9 +24,16 @@ angular.module('npp', ['apojop', 'platypus'])
     $scope.$apply()
   });
 
-  $scope.expression = '(id is between 2 and 7 and gender is "male") or (id is between 6 and 10 and gender is not "male")'
+  $scope.expression = ''
 
   platy = $filter("platypus")
 
   $scope.$watch('expression', update);
+
+  $scope.examples = [
+    'id is 7',
+    'id is not 7',
+    'firstname contains "la" or "al"',
+    '(age is between 24 and 27 and gender is "female") or company contains "bw"'
+  ];
 });
