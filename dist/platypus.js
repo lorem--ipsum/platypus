@@ -1053,9 +1053,9 @@ return { parser:(function() {
     contains = function(rhs) {
       if (rhs instanceof Array) {
         return function(a) {
-          return rhs.every(function(d) {
-            return d.indexOf(a) === -1;
-          });
+          return (rhs.filter(function(d) {
+            return a.search(d) !== -1;
+          })).length > 0;
         };
       }
       return function(a) {
