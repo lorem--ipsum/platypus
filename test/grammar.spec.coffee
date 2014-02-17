@@ -24,3 +24,8 @@ describe 'grammar', ->
     expect(parser.parse('foo contains "bar"')).toEqual(
       { field : 'foo', operator : 'contains', value : "bar" }
     )
+
+    expect(parser.parse('foo contains "bar" or "baz"')).toEqual(
+      { field : 'foo', operator : 'contains', value : ["bar", "baz"] }
+    )
+

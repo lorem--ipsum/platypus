@@ -21,7 +21,7 @@ mod.factory "platypusUtils", ->
 
   contains = (rhs) ->
     if rhs instanceof Array
-      return (a) -> rhs.every (d) -> d.indexOf(a) is -1
+      return (a) -> (rhs.filter (d) -> a.search(d) isnt -1).length > 0
 
     return (a) -> a.search(rhs) isnt -1
 

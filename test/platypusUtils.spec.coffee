@@ -32,4 +32,5 @@ describe "platypusUtils", ->
       expect(utils.comparator("contains", "foo")("boofoobar")).toBeTruthy()
       expect(utils.comparator("contains", "foo")("bookoobar")).toBeFalsy()
       expect(utils.comparator("contains", ["foo", "bar"])("bookoobar")).toBeTruthy()
+      expect(utils.comparator("contains", ["foo", "baz"])("bookoobar")).toBeFalsy()
 
